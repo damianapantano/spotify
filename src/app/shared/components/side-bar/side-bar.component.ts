@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent {
-  mainMenu: { 
-    defaultOptions: Array<any>, accessLink: Array<any> }
-      = {defaultOptions: [], accessLink: []}
+  mainMenu: { //Quiere decir que tiene que contener un objeto por defecto
+    defaultOptions: Array<any>, accessLink: Array<any> }//va a tener dos propiedades, defaultoptions y accesslink
+    //A su vez, cada propiedad debe contener una lista de arrays
+    //Así solo va a dar error en main Menu, hay que inicializarlo poniendo:
+    = {defaultOptions: [], accessLink: []}
 
     customOptions: Array<any> = []
 
@@ -64,3 +66,4 @@ export class SideBarComponent {
 
   }
 }
+
