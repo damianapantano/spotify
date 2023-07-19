@@ -4,8 +4,8 @@ import { TracksPageComponent } from './pages/tracks-page/tracks-page.component';
 
 const routes: Routes = [
   {
-    path: '', //Colocamos el path de home porque forma parte de home
-    component: TracksPageComponent
+    path:'',
+    component:TracksPageComponent
   }
 ];
 

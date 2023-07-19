@@ -1,17 +1,21 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: 'img[appImgBroken]' //Al ponerse img primero, indicas que solo se puedan aplicar en img
+  selector: 'img[appImgBroken]'
 })
 export class ImgBrokenDirective {
-  @Input() customImg: string = ''
+  // @Input() customImg: string = '';
   @HostListener('error') handleError(): void {
     const elNative = this.elHost.nativeElement
     console.log('🔴 Esta imagen revento -->', this.elHost);
-    elNative.src = this.customImg
+    // elNative.src = this.customImg
+    elNative.src = '../../../assets/images/img-broken.png';
 
   }
+
   constructor(private elHost: ElementRef) {
+
+
   }
 
 }

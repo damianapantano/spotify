@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthPageComponent } from './pages/auth-page/auth-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
-  {path: 'login',
-  component: AuthPageComponent 
+  {
+    path: 'login',//TODO http://localhost:4200/auth/login
+    component: LoginPageComponent
   },
   {
-    path: '**', //Para decirle en referencia a cualquier ruta de este auth
+    path: '**',
     redirectTo: '/auth/login'
   }
-  
 ];
 
 @NgModule({

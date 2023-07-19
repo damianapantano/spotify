@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
+import { Component,ElementRef,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TrackService } from '@modules/tracks/services/track.service';
+
 
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css']
 })
-export class SideBarComponent {
-  mainMenu: { //Quiere decir que tiene que contener un objeto por defecto
-    defaultOptions: Array<any>, accessLink: Array<any> }//va a tener dos propiedades, defaultoptions y accesslink
-    //A su vez, cada propiedad debe contener una lista de arrays
-    //Así solo va a dar error en main Menu, hay que inicializarlo poniendo:
-    = {defaultOptions: [], accessLink: []}
+export class SideBarComponent implements OnInit {
 
-    customOptions: Array<any> = []
+  mainMenu: {
+    defaultOptions: Array<any>, accessLink: Array<any>
+  } = { defaultOptions: [], accessLink: [] }
 
-    constructor() { }
+  customOptions: Array<any> = []
+
+  constructor(private router: Router, private trackService: TrackService) { }
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
@@ -32,8 +34,10 @@ export class SideBarComponent {
         name: 'Tu biblioteca',
         icon: 'uil uil-chart',
         router: ['/', 'favorites'],
+        query: { hola: 'mundo' }
       }
     ]
+
     this.mainMenu.accessLink = [
       {
         name: 'Crear lista',
@@ -64,6 +68,28 @@ export class SideBarComponent {
       }
     ]
 
+    this.trackService.dataTracksRandom$
+      .subscribe((response:any)=>{
+        console.log('--->', response);
+
+        this.customOptions.push(
+          {
+            name: response[0].name,
+            router: []
+          }
+        )
+      })
+
+  }
+
+  goTo($event: any): void {
+    this.router.navigate(['/', 'favorites'], {
+      queryParams: {
+        key1: 'value1',
+        key2: 'value2',
+        key3: 'value3'
+      }
+    })
+    console.log($event)
   }
 }
-
